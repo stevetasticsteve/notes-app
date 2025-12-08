@@ -45,6 +45,9 @@ COPY --chown=wagtail:wagtail . .
 RUN mkdir -p /app/staticfiles
 RUN chown -R wagtail:wagtail /app/staticfiles 
 
+RUN mkdir -p /app/media
+RUN chown -R wagtail:wagtail /app/media
+
 # Use user "wagtail" to run the build commands below and the server itself.
 USER wagtail
 

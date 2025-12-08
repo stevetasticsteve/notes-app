@@ -31,7 +31,6 @@ WAGTAILSEARCH_BACKENDS = {
     }
 }
 
-
 try:
     from .local import *
 except ImportError:
