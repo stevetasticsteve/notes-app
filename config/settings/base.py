@@ -119,13 +119,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
-
-TIME_ZONE = "UTC"
-
+TIME_ZONE = os.getenv("TIME_ZONE", "Pacific/Port_Moresby")
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
@@ -165,7 +161,6 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10_000
 
 
 # Wagtail settings
-
 WAGTAIL_SITE_NAME = "config"
 
 # Search
@@ -196,10 +191,3 @@ WAGTAILDOCS_EXTENSIONS = [
     "xlsx",
     "zip",
 ]
-
-# WAGTAILADMIN_RICH_TEXT_EDITORS = {
-#     "default": {
-#         "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
-#         "OPTIONS": {"features": ["h2", "bold", "italic", "link", "document-link"]},
-#     }
-# }

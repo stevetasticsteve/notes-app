@@ -2,8 +2,8 @@ version: '3.8'
 services:
   wagtail_notes:
     build: . 
-    container_name: your_wagtail_app_name
-    command: gunicorn config.wsgi:application --bind 127.0.0.1:8000 settings.production --workers 3
+    container_name: wagtail-notes-app
+    command: gunicorn config.wsgi:application --bind 127.0.0.1:8000 --workers 3
     volumes:
       - .:/app # Mount the current directory into the container
     ports:
@@ -15,7 +15,7 @@ services:
       
   wagtail_db:
     image: postgres:17 
-    container_name: wagtail_db_instance
+    container_name: wagtail_db
     env_file:
       - .env
     volumes:

@@ -77,3 +77,5 @@ db.sqlite3  # Database file (if using default SQLite)
 
 # Windows
 Thumbs.db
+
+.env
