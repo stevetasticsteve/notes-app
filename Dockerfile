@@ -42,9 +42,11 @@ RUN chown wagtail:wagtail /app
 # Copy the source code of the project into the container.
 COPY --chown=wagtail:wagtail . .
 
+RUN mkdir -p /app/static
+RUN chown -R wagtail:wagtail /app/static 
+
 # Use user "wagtail" to run the build commands below and the server itself.
 USER wagtail
-RUN mkdir -p /app/static
 
 # Collect static files.
 RUN python manage.py collectstatic --noinput --clear
