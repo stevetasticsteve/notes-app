@@ -3,6 +3,7 @@ from wagtail import blocks
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Page
+from wagtail.search import index
 
 from notes.blocks import BootstrapTableBlock
 
@@ -48,4 +49,8 @@ class NotePage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("body"),
+    ]
+
+    search_fields = Page.search_fields + [  # Inherit search_fields from Page
+        index.SearchField("body"),
     ]

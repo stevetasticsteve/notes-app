@@ -1,38 +1,32 @@
-{% extends "base.html" %}
 {% load static wagtailcore_tags %}
+<div id="search-results" class="mt-4">
 
-{% block body_class %}template-searchresults{% endblock %}
+    {% if search_results %}
 
-{% block title %}Search{% endblock %}
+    <ul class="list-group">
+        {% for page in search_results %}
+            <li class="list-group-item">
+                <a href="{{ page.url }}">
+                    <h5>{{ page.title }}</h5>
+                </a>
+                
+                {% if page.search_snippet %}
+                    <p class="search-snippet">{{ page.search_snippet|safe }}</p>
+                {% else %}
+                    <p class="text-muted small">
+                        {{ page.intro|default:"Click to view full page content." }}
+                    </p>
+                {% endif %}
+                
+                <p class="text-muted small">{{ page.first_published_at|date:"M d, Y" }}</p>
+            </li>
+        {% endfor %}
+    </ul>
 
-{% block content %}
-<h1>Search</h1>
 
-<form action="{% url 'search' %}" method="get">
-    <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-    <input type="submit" value="Search" class="button">
-</form>
+    {% elif search_query %}
 
-{% if search_results %}
-<ul>
-    {% for result in search_results %}
-    <li>
-        <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
-        {% if result.search_description %}
-        {{ result.search_description }}
-        {% endif %}
-    </li>
-    {% endfor %}
-</ul>
+    No results found
+    {% endif %}
 
-{% if search_results.has_previous %}
-<a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
-{% endif %}
-
-{% if search_results.has_next %}
-<a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
-{% endif %}
-{% elif search_query %}
-No results found
-{% endif %}
-{% endblock %}
+</div>

@@ -8,4 +8,5 @@ dependencies = [
     "django>=5.1,<5.2",
     "django-tasks>=0.7",
     "wagtail==7.0",
+    "whitenoise>=6.11.0",
 ]

@@ -11,7 +11,7 @@ def breadcrumbs(context):
     # Exclude the root page (depth=1) and the home page (often depth=2)
     # The default Wagtail root page has depth=1, and the site's home page is often depth=2.
     # We use depth > 2 to exclude those, only getting ancestors of the current page.
-    if self is None or self.depth <= 2:
+    if self is None or self.depth <= 1:
         ancestors = ()
     else:
         # Get ancestors of the current page, inclusive=True includes the current page,

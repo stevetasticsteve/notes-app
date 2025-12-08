@@ -19,6 +19,9 @@ def search(request):
     if search_query:
         search_results = Page.objects.live().search(search_query)
 
+        search_results_qs = Page.objects.live().search(search_query)
+        search_results = search_results_qs.results()
+
         # To log this query for use with the "Promoted search results" module:
 
         # query = Query.get(search_query)
@@ -27,14 +30,14 @@ def search(request):
     else:
         search_results = Page.objects.none()
 
-    # Pagination
-    paginator = Paginator(search_results, 10)
-    try:
-        search_results = paginator.page(page)
-    except PageNotAnInteger:
-        search_results = paginator.page(1)
-    except EmptyPage:
-        search_results = paginator.page(paginator.num_pages)
+    # # Pagination
+    # paginator = Paginator(search_results, 10)
+    # try:
+    #     search_results = paginator.page(page)
+    # except PageNotAnInteger:
+    #     search_results = paginator.page(1)
+    # except EmptyPage:
+    #     search_results = paginator.page(paginator.num_pages)
 
     return TemplateResponse(
         request,

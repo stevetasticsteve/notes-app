@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -10,18 +12,45 @@
 {% block content %}
 
 <div class="container mt-4">
-    <div class="row">
-        <div class="col">
-            <h1 class="mb-4"> {{ page.title }} </h1>
-            <div class="home-body">
-                {{ page.body }}
-            </div>
-        </div>
+    <h1 class="mb-4"> {{ page.title }} </h1>
+    <div class="home-body">
+        {{ page.body|richtext }}
     </div>
-    {% for link in linked_pages %}
-        <li>
-            <a href="{{ link.url }}">{{ link.title }}</a>
-        </li>
+
+    <div class="row my-4">
+        {% for block in page.linked_pages %}
+            {# Check if the block is a 'card' and the page is published #}
+            {% with linked_page=block.value.page %}
+                {% if linked_page.live %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            {# Use the custom image or a default one from the linked page #}
+                            {% if block.value.card_image %}
+                                {% image block.value.card_image fill-300x200 as card_img %}
+                                <img src="{{ card_img.url }}" alt="{{ card_img.alt }}" class="card-img-top">
+                            {% endif %}
+                            
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    {# Use the custom title or the linked page's title #}
+                                    {{ block.value.custom_title|default:linked_page.title }}
+                                </h5>
+                                {# Get the URL of the linked page #}
+                                <a href="{% pageurl linked_page %}" class="btn btn-primary">
+                                    Go to {{linked_page.title}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endwith %}
         {% endfor %}
+    </div>
+
+    {% include "home/search_bar.html" %}
+
+    {% include "search/search.html" %}
+
+</div>
 
 {% endblock content %}

@@ -277,6 +277,7 @@ dependencies = [
     { name = "django" },
     { name = "django-tasks" },
     { name = "wagtail" },
+    { name = "whitenoise" },
 ]
 
 [package.metadata]
@@ -284,6 +285,7 @@ requires-dist = [
     { name = "django", specifier = ">=5.1,<5.2" },
     { name = "django-tasks", specifier = ">=0.7" },
     { name = "wagtail", specifier = "==7.0" },
+    { name = "whitenoise", specifier = ">=6.11.0" },
 ]
 
 [[package]]
@@ -491,6 +493,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/c3/54/8702c72fa14c8da1a96cf0542b10cc755b62d0f885e8f11b4ee88b4ff316/wagtail-7.0.tar.gz", hash = "sha256:7c267ead43da3aa9469f233b111624aa1a508a5840f1ddda72d104957fdb3426", size = 6670098, upload-time = "2025-05-06T15:41:29.053Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/98/cf/426b073612fc36aa9a921ff5ca15635b5fc40fabccbfc0345e50cdb09000/wagtail-7.0-py3-none-any.whl", hash = "sha256:6a254ef84a740689dd844aabc5254828ecb62840257721e639929cb0e1a2b3c1", size = 9148023, upload-time = "2025-05-06T15:41:16.18Z" },
+]
+
+[[package]]
+name = "whitenoise"
+version = "6.11.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/15/95/8c81ec6b6ebcbf8aca2de7603070ccf37dbb873b03f20708e0f7c1664bc6/whitenoise-6.11.0.tar.gz", hash = "sha256:0f5bfce6061ae6611cd9396a8231e088722e4fc67bc13a111be74c738d99375f", size = 26432, upload-time = "2025-09-18T09:16:10.995Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6c/e9/4366332f9295fe0647d7d3251ce18f5615fbcb12d02c79a26f8dba9221b3/whitenoise-6.11.0-py3-none-any.whl", hash = "sha256:b2aeb45950597236f53b5342b3121c5de69c8da0109362aee506ce88e022d258", size = 20197, upload-time = "2025-09-18T09:16:09.754Z" },
 ]
 
 [[package]]
