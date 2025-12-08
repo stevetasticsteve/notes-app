@@ -25,12 +25,6 @@ DATABASES = {
     }
 }
 
-WAGTAILSEARCH_BACKENDS = {
-    "default": {
-        "BACKEND": "wagtail.search.backends.postgresql.SearchBackend",
-    }
-}
-
 try:
     from .local import *
 except ImportError:
