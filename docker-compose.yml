@@ -5,6 +5,7 @@ services:
     restart: unless-stopped
     volumes:
       - .:/app # Mount the current directory into the container
+      - /app/staticfiles
     ports:
       - "127.0.0.1:8003:8000" 
     env_file:
