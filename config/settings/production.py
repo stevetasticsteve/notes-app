@@ -20,7 +20,7 @@ DATABASES = {
         "NAME": "wagtail_db",
         "USER": "wagtail",
         "PASSWORD": os.getenv("POSTGRES_PASSWORD", "1234"),
-        "HOST": "db",
+        "HOST": "wagtail_db",
         "PORT": 5432,
     }
 }
