@@ -7,7 +7,7 @@ SECRET_KEY = os.getenv(
 )
 ALLOWED_HOSTS = [host for host in os.getenv("ALLOWED_HOSTS", "").split(",") if host]
 
-DEBUG = False
+DEBUG = os.getenv("DEBUG", "True").lower() in ("true", "1", "t", "yes")
 CSRF_COOKIE_SECURE = True
 CSRF_TRUSTED_ORIGINS = [f"https://{site}" for site in ALLOWED_HOSTS]
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
