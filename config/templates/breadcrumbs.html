@@ -1,0 +1,25 @@
+{% load wagtailcore_tags %}
+
+{% if ancestors %}
+<div class="container mt-3 mb-3">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {# Link to the main site Home page. You may need to customize how you get this link. #}
+            {# A common pattern is to fetch it from the site root, or hardcode your homepage URL. #}
+            <li class="breadcrumb-item"><a href="/">Home</a></li> 
+
+            {# Loop through all ancestor pages retrieved by the template tag #}
+            {% for page in ancestors %}
+                <li class="breadcrumb-item">
+                    <a href="{% pageurl page %}">{{ page.title }}</a>
+                </li>
+            {% endfor %}
+
+            {# The final item is the current page, which should be marked as 'active' #}
+            <li class="breadcrumb-item active" aria-current="page">
+                {{ current_page.title }}
+            </li>
+        </ol>
+    </nav>
+</div>
+{% endif %}

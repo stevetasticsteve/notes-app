@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+
+{% endblock extra_css %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h1 class="mb-4"> {{ page.title }} </h1>
+            <div class="home-body">
+                {{ page.body }}
+            </div>
+        </div>
+    </div>
+    {% for link in linked_pages %}
+        <li>
+            <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+        {% endfor %}
+
+{% endblock content %}
