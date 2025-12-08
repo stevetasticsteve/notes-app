@@ -3,6 +3,7 @@ services:
   wagtail_notes:
     build: . 
     container_name: wagtail-notes-app
+    restart: unless-stopped
     volumes:
       - .:/app # Mount the current directory into the container
     ports:
@@ -15,6 +16,7 @@ services:
   wagtail_db:
     image: postgres:17 
     container_name: wagtail_db
+    restart: unless-stopped
     env_file:
       - .env
     volumes:
