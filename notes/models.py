@@ -12,6 +12,7 @@ class NotesContentsPage(Page):
     """A page witha  simple text intro, followed by a auto generated list of children NotePages."""
 
     subpage_types = ["notes.NotePage", "notes.NotesContentsPage"]
+    page_description = "A page that acts as a table of contents for all notes below it."
 
     intro = RichTextField(blank=True)
 
@@ -35,13 +36,13 @@ class NotePage(Page):
     parent_page_types = ["notes.NotesContentsPage"]
     # Note pages should not have any subpages
     subpage_types = []
+    page_description = "A page representing an individual note."
 
     note_updated = models.DateField("Note Date", auto_now=True)
 
     # The main, flexible content area
     body = StreamField(
         [
-            ("heading", blocks.CharBlock(form_classname="full title")),
             ("paragraph", blocks.RichTextBlock()),
             ("table", BootstrapTableBlock()),
         ],
