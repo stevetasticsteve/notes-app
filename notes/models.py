@@ -23,7 +23,10 @@ class NotesContentsPage(Page):
     def get_context(self, request):
         context = super().get_context(request)
         # Fetch all live NotePages that are children of this page
-        context["notes"] = self.get_children().live()  # .order_by("sort_order")
+        context["notes"] = self.get_children().live()
+        for note in context["notes"]:
+            note.children = note.get_children().live()
+            note.num_children = note.children.count()
         return context
 
 

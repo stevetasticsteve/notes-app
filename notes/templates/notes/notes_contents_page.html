@@ -3,7 +3,6 @@
 {% load wagtailcore_tags %}
 
 {% block extra_css %}
-
 {% endblock extra_css %}
 
 {% block content %}
@@ -22,8 +21,19 @@
         {% for note in notes %}
         <li class="list-group-item">
             <a href="{{ note.url }}">
-                {{ note.title }}
-            </a>
+            {{ note.title }} </a>
+                {% if note.num_children > 0 %}
+                    <span class="badge text-bg-primary rounded-pill mx-4">{{note.num_children}}</span>  
+            {% for child in note.children %}
+                <ul>
+                    <li>
+                        <a href="{{ child.url }}">
+                        {{ child.title }}
+                        </a>
+                    </li>
+                </ul>
+            {% endfor %}
+            {% endif %}
         </li>
         {% endfor %}
     </ul>
